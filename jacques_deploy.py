@@ -121,7 +121,11 @@ def setup(config: WatcherConfig):
         install_venv(config)
 
     cmd = create_systemd_service(config.name, config.service_exec)
-    subprocess.run(cmd, check=True)
+    try:
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError:
+        logging.info("Service already exists")
+        restart_systemd_service(config.name)
 
 
 def get_local_head(config: WatcherConfig) -> str:
