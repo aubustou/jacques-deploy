@@ -1,0 +1,7 @@
+{
+	"name": "test",
+	"exec_name": "test-jacques-deploy",
+	"git_address": "https://github.com/aubustou/test-jacques-deploy.git",
+	"git_branch": "main",
+	"python_exec_path": "python3.10"
+}
