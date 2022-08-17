@@ -79,14 +79,13 @@ def check_git_repo(path: Path):
 
 def install_package(config: WatcherConfig):
     logging.info("Installing package %s", config.name)
+    cmd = [config.pip_exec, "install"]
+    if config.force_reinstall:
+        cmd.append("--force-reinstall")
+    cmd.append(str(config.git_path))
+
     subprocess.run(
-        [
-            config.pip_exec,
-            "install",
-            "--upgrade",
-            "--force-reinstall" if config.force_reinstall else "",
-            str(config.git_path / "."),
-        ],
+        cmd,
         cwd=config.git_path,
         check=True,
     )
