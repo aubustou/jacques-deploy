@@ -24,6 +24,8 @@ class WatcherConfig:
     # Python config
     python_exec_path: str = "python3"
 
+    force_reinstall: bool = False
+
     venv_path: Path = field(init=False)
     bin_path: Path = field(init=False)
     pip_exec: str = field(init=False)
@@ -82,7 +84,7 @@ def install_package(config: WatcherConfig):
             config.pip_exec,
             "install",
             "--upgrade",
-            "--force-reinstall",
+            "--force-reinstall" if config.force_reinstall else "",
             str(config.git_path / "."),
         ],
         cwd=config.git_path,
