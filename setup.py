@@ -6,6 +6,7 @@ setup(
     version="0.1.0",
     author="aubustou",
     author_email="survivalfr@yahoo.fr",
+    python_requires=">=3.9",
     entry_points={
         "console_scripts": [
             "jacques-deploy = jacques_deploy:main",
